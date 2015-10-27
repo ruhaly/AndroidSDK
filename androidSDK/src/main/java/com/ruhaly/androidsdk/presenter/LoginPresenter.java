@@ -17,7 +17,7 @@ import rx.functions.Func0;
 /**
  * Created by hlr on 2015/9/18.
  */
-public class LoginPresenter<T> extends RxPresenter<ILoginView> {
+public class LoginPresenter<T> extends RxPresenter<T> {
 
     private static final int REQUEST_LOGIN = 1;
 
@@ -37,37 +37,20 @@ public class LoginPresenter<T> extends RxPresenter<ILoginView> {
 
     public void requestLogin(int request, final String name, final String pwd, final String url) {
 
-        new ApiService().requestLogin(name, pwd, url).subscribe(new Subscriber<LoginResult>() {
-            @Override
-            public void onCompleted() {
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                loginView.handleError(e);
-            }
-
-            @Override
-            public void onNext(LoginResult result) {
-                loginView.notifyData(result);
-            }
-        });
-
-
         restartableFirst(request, new Func0<Observable<LoginResult>>() {
             @Override
             public Observable<LoginResult> call() {
                 return new ApiService().requestLogin(name, pwd, url);
             }
-        }, new Action2<ILoginView, LoginResult>() {
+        }, new Action2<T, LoginResult>() {
             @Override
-            public void call(ILoginView view, LoginResult result) {
-                view.notifyData(result);
+            public void call(T view, LoginResult result) {
+                ((ILoginView) view).notifyData(result);
             }
-        }, new Action2<ILoginView, Throwable>() {
+        }, new Action2<T, Throwable>() {
             @Override
-            public void call(ILoginView view, Throwable throwable) {
-                view.handleError(throwable);
+            public void call(T view, Throwable throwable) {
+                ((ILoginView) view).handleError(throwable);
             }
         });
         Observable.just("").subscribe(new Subscriber<String>() {
