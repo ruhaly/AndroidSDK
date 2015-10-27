@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
         public void removeData(int position) {
             list.remove(position);
             notifyItemRemoved(position);
-            //ceshi
+            //ceshidddddd
             // notifyDataSetChanged();
         }
 
