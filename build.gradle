@@ -1,0 +1,70 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.0'
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "23.0.1"
+    androidMinSdkVersion = 17
+    androidTargetSdkVersion = 22
+    androidCompileSdkVersion = 23
+    androidSupportDesign = '23.1.0'
+
+    //Libraries
+    butterKnifeVersion = '7.0.1'
+    rxJavaVersion = '1.0.14'
+    rxAndroidVersion = '1.0.1'
+    okHttpVersion = '2.5.0'
+    gsonVersion = '2.4'
+    nucleus = '2.0.1'
+    nucleusSupportV4 = '2.0.1'
+    nucleusSupportV7 = '2.0.1'
+    picasso = '2.5.2'
+    recyclerViewVersion = '23.0.1'
+
+    supportDependencies = [
+            supportDesign: "com.android.support:design:${androidSupportDesign}",
+            recyclerView : "com.android.support:recyclerview-v7:${recyclerViewVersion}"
+    ]
+
+    presentationDependencies = [
+            butterKnife: "com.jakewharton:butterknife:${butterKnifeVersion}",
+            rxJava     : "io.reactivex:rxjava:${rxJavaVersion}",
+            rxAndroid  : "io.reactivex:rxandroid:${rxAndroidVersion}"
+    ]
+    mvpDependencies = [
+            nucleus  : "info.android15.nucleus:nucleus:${nucleus}",
+            nucleusV4: "info.android15.nucleus:nucleus-support-v4:${nucleusSupportV4}",
+            nucleusV7: "info.android15.nucleus:nucleus-support-v7:${nucleusSupportV7}",
+    ]
+
+
+    dataDependencies = [
+            rxJava   : "io.reactivex:rxjava:${rxJavaVersion}",
+            rxAndroid: "io.reactivex:rxandroid:${rxAndroidVersion}",
+            okHttp   : "com.squareup.okhttp:okhttp:${okHttpVersion}",
+            picasso  : "com.squareup.picasso:picasso:${picasso}",
+            gson     : "com.google.code.gson:gson:${gsonVersion}",
+
+    ]
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

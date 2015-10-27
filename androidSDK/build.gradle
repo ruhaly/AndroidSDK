@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.androidCompileSdkVersion
+    buildToolsVersion rootProject.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.ruhaly.androidsdk"
+        minSdkVersion rootProject.androidMinSdkVersion
+        targetSdkVersion rootProject.androidTargetSdkVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def dataDependencies = rootProject.ext.dataDependencies
+    def supportDependencies = rootProject.ext.supportDependencies
+    def mvpDependencies = rootProject.ext.mvpDependencies
+    //注解
+    compile presentationDependencies.butterKnife
+    //rxAndroid with rxJava
+    compile dataDependencies.rxJava
+    compile dataDependencies.rxAndroid
+    //网络请求
+    compile dataDependencies.okHttp
+    compile dataDependencies.gson
+    compile supportDependencies.supportDesign
+    compile supportDependencies.recyclerView
+    //mvp ceshi
+    compile mvpDependencies.nucleus
+    compile mvpDependencies.nucleusV4
+    compile mvpDependencies.nucleusV7
+}

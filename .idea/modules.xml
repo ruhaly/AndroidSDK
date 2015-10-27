@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LuichiApplication.iml" filepath="$PROJECT_DIR$/LuichiApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidSDK/androidSDK.iml" filepath="$PROJECT_DIR$/androidSDK/androidSDK.iml" />
+    </modules>
+  </component>
+</project>

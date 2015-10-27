@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TimeCountView">
+        <attr name="millisInFuture" format="integer"></attr>
+        <attr name="countDownInterval" format="integer"></attr>
+    </declare-styleable>
+    <declare-styleable name="SlideSwitch">
+        <!-- 按钮底层背景 -->
+        <attr name="background_b" format="reference" />
+        <!-- 上层按钮背景 -->
+        <attr name="btn_background" format="reference" />
+        <!-- 控件width -->
+        <attr name="m_width" format="dimension" />
+        <!-- 控件height -->
+        <attr name="m_height" format="dimension" />
+        <!-- 控件上可拖动按钮width -->
+        <attr name="mbt_width" format="dimension" />
+        <!-- 控件上可拖动按钮height -->
+        <attr name="mbt_height" format="dimension" />
+    </declare-styleable>
+</resources>
