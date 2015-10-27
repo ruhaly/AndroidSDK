@@ -8,7 +8,6 @@ import com.ruhaly.androidsdk.R;
 import com.ruhaly.androidsdk.baseapi.BaseActivity;
 import com.ruhaly.androidsdk.bean.LoginResult;
 import com.ruhaly.androidsdk.presenter.LoginPresenter;
-import com.ruhaly.androidsdk.view.ILoginView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,7 +43,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     @OnClick(R.id.btnLogin)
     public void btnLoginClick(View view) {
-        openWaittingDialog(this);
+        showLoading();
         getPresenter().requestLogin("", "");
     }
 
