@@ -78,7 +78,8 @@ public class MainActivity extends BaseActivity {
         public void removeData(int position) {
             list.remove(position);
             notifyItemRemoved(position);
-//            notifyDataSetChanged();
+            //ceshi
+            // notifyDataSetChanged();
         }
 
         public MyAdapter(List<UserBean> list) {
