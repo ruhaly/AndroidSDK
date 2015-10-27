@@ -25,9 +25,6 @@ public class LoginPresenter<T> extends RxPresenter<T> {
 
     private String pwd;
 
-
-    ILoginView loginView;
-
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
