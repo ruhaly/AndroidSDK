@@ -1,1 +1,1 @@
-include ':androidSDK'
+include ':androidSDK', ':rxjava'

@@ -10,9 +10,12 @@ import com.ruhaly.androidsdk.view.ILoginView;
 
 import nucleus.presenter.RxPresenter;
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
+import rx.functions.Action1;
 import rx.functions.Action2;
 import rx.functions.Func0;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hlr on 2015/9/18.
@@ -37,7 +40,12 @@ public class LoginPresenter<T> extends RxPresenter<T> {
         restartableFirst(request, new Func0<Observable<LoginResult>>() {
             @Override
             public Observable<LoginResult> call() {
-                return new ApiService().requestLogin(name, pwd, url);
+                return new ApiService().requestLogin(name, pwd, url).doOnNext(new Action1<LoginResult>() {
+                    @Override
+                    public void call(LoginResult loginResult) {
+                        //异步保存数据
+                    }
+                }).subscribeOn(Schedulers.io());
             }
         }, new Action2<T, LoginResult>() {
             @Override
@@ -48,22 +56,6 @@ public class LoginPresenter<T> extends RxPresenter<T> {
             @Override
             public void call(T view, Throwable throwable) {
                 ((ILoginView) view).handleError(throwable);
-            }
-        });
-        Observable.just("").subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(String s) {
-
             }
         });
     }

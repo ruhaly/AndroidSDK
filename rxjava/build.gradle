@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    compile dataDependencies.rxJava
+    compile dataDependencies.gson
+}
