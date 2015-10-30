@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,18 +20,19 @@ import rx.Scheduler;
 import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 public class MyClass {
     public static void main(String[] args) {
-//        List<Student> list = new ArrayList<>();
-//        Student s = new Student();
-//        s.setName("111");
-//        Student s1 = new Student();
-//        s1.setName("222");
-//
-//        list.add(s);
-//        list.add(s1);
+        List<Student> list = new ArrayList<>();
+        Student s = new Student();
+        s.setName("111");
+        Student s1 = new Student();
+        s1.setName("222");
+
+        list.add(s);
+        list.add(s1);
 //
 //
 //        Gson gson = new Gson();
@@ -40,34 +42,64 @@ public class MyClass {
 //        }.getType());
 //        System.out.println(l.size());
 
-
-        Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                subscriber.onNext("你好么");
-            }
-        }).doOnNext(new Action1<String>() {
-            @Override
-            public void call(String s) {
-                for (int i = 0; i < 100; i++) {
-                    System.out.println(s + i);
-                }
-            }
-        }).subscribeOn(Schedulers.io()).subscribe(new Action1<String>() {
-            @Override
-            public void call(String s) {
-                System.out.println("subscribe" + s);
-            }
-        });
-        System.out.println("结束22");
-        BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
-        String str = null;
-        try {
-            str = strin.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(str);
+//        Observable.from(a).scan(new Func2<Integer, Integer, Integer>() {
+//            @Override
+//            public Integer call(Integer integer, Integer integer2) {
+//                return integer * integer2;
+//            }
+//        }).subscribe(new Action1<Integer>() {
+//            @Override
+//            public void call(Integer integer) {
+//                System.out.println(integer);
+//            }
+//        });
+//
+//        Observable.create(new Observable.OnSubscribe<String>() {
+//            @Override
+//            public void call(Subscriber<? super String> subscriber) {
+//                subscriber.onNext("你好么");
+//            }
+//        }).map(new Func1<String, String>() {
+//            @Override
+//            public String call(String s) {
+//                return "1111";
+//            }
+//        }).flatMap(new Func1<String, Observable<String>>() {
+//            @Override
+//            public Observable<String> call(String s) {
+//                return null;
+//            }
+//        }).doOnNext(new Action1<String>() {
+//            @Override
+//            public void call(String s) {
+//                List<String> list = new ArrayList<>();
+//                String ss = list.get(12);
+//            }
+//        }).subscribeOn(Schedulers.io()).subscribe(new Subscriber<String>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                System.out.println("错误"+e.getMessage());
+//            }
+//
+//            @Override
+//            public void onNext(String s) {
+//
+//            }
+//        });
+//        System.out.println("结束22");
+//        BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
+//        String str = null;
+//        try {
+//            str = strin.readLine();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(str);
     }
 
     static class Student {
